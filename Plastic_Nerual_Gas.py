@@ -81,14 +81,44 @@ def loop_neural_gas(Vector,Activation,Z,dataSet,N):
 
 	return Vector
 				
+def SetVn(dataSet,Vector):
+	Pn= []
+	Vector_save = Vector
+	Vector_new = []
+	Vector_temp = []
+	
+	for v in Vector:
+		Vector_temp = [vec for vec in Vector if vec!=v ]
+		print (Vector_temp)
+		for x in dataSet:
+			smallest = True		
+			for v_other in Vector_temp:
+				if Distance(x,v) > Distance(x,v_other):	
+					smallest = False		
+			if smallest:			
+				Pn.append(x)
+		#Pn = np.mat(Pn)
+		if len(Pn)!=0:
+			v_new = sum(Pn)/len(Pn)
+		else:
+			v_new = 0
+		Vector_new.append(v_new)
+		#Vector = Vector_save
+	
+	return Vector_new
 			
+def Del_Vn_Decre_N:(Activation,Vector_new):
+		
+		
+	
 			
 
 def main(dataSet,N):
-	Vector, Activation,Z = Initialization(dataSet,N)
-	print (Vector)
-	Vector = loop_neural_gas(Vector,Activation,Z,dataSet,N)
-	print (Vector)
+	#Vector, Activation,Z = Initialization(dataSet,N)
+	#Vector = loop_neural_gas(Vector,Activation,Z,dataSet,N)
+	Vector = [[1.3,0.8],[1.5,-0.2],[-0.4,2.2]]
+	Vector_new = SetVn(dataSet,Vector)
+	print (Vector_new)
 
 
 if __name__ == '__main__':
