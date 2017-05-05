@@ -19,10 +19,10 @@ def LoadData(filename):
 def Initialization(dataSet,N):
 	# dataSet must be a matrix not a list
 	data_dim = dataSet.shape[1]	
-	#Vector = np.mat(np.zeros((N,data_dim)))
-	#Vector[0,:] = dataSet[0,:]
-	Vector = []
-	Vector.append(dataSet[0,:])
+	Vector = np.mat(np.zeros((N,data_dim)))
+	Vector[0,:] = dataSet[0,:]
+	#Vector = []
+	#Vector.append(dataSet[0,:])
 	#initialization of activation
 	Activation = []
 	for i in range(N):
@@ -76,8 +76,8 @@ def loop_neural_gas(Vector,Activation,Z,dataSet,N):
 			Lena[i] =(0.5)**(i/dataSet.shape[0])  # we suppose Lena[0] = 1, Lena[dataSet.shape[0]] = 0.5
 			for m in range(len(Vector)):
 				hk = np.exp(m/Lena[i])
-				#Vector[m,:]+=dec_learn_factor[i]*hk*(Vector_before[m,:]-x)
-				Vector[m]+=dec_learn_factor[i]*hk*(Vector_before[m]-x)
+				Vector[m,:]+=dec_learn_factor[i]*hk*(Vector_before[m,:]-x)
+				#Vector[m]+=dec_learn_factor[i]*hk*(Vector_before[m]-x)
 
 	return Vector
 				
@@ -108,7 +108,13 @@ def SetVn(dataSet,Vector):
 	return Vector_new
 			
 def Del_Vn_Decre_N:(Activation,Vector_new):
-		
+	'''
+	for examplee there are 5 reference vector and 10 x
+	so the Activation is in the form like [1,0,0,1,0], 1 represent the activation and 0 is nonactivation
+	and then the Vector_new is in the form like [v1,0,v3,v4,0], if it is 0 , it means that no v in the Vector_new	
+
+	'''		
+	
 		
 	
 			
