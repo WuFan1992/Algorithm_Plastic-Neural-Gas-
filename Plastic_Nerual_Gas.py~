@@ -134,7 +134,7 @@ def Del_Vn_Decre_N:(Activation,Vector_new,N):
 
 			
 		
-def Set_An(Activation,Vector_new,Pn_list,Z,tolerate_cost,N):
+def Set_An(Activation,Vector_new,Pn_list,tolerate_cost):
 	'''
 
 	Pn_list is a list with 20 element(for example Vn has 20 vectors)
@@ -161,14 +161,9 @@ def Set_An(Activation,Vector_new,Pn_list,Z,tolerate_cost,N):
 		
 	# verify if there is 0 in the list
 	for cnn in CnN_list :
-		if (cnn >=tolerate_cost) |(cnn ==0) |(CN not in Z):
-			Z.append(CN)
-			cv_star = max(CnN_list)
-			Vector_new.append(cv_star)
-			N = N+1	
-			Vector= loop_neural_gas(Vector_new,Activation,Z,dataSet,N)   # iteration
+		if (cnn >=tolerate_cost) |(cnn ==0) |(CN ):
+			Renew()  # we must define the Renew function
 		else:
-			return Vector_new
 			
 			
 		
